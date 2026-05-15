@@ -1,0 +1,88 @@
+==================================================
+  LoungeIQ — HOW TO RUN ON WINDOWS
+==================================================
+
+FIRST TIME SETUP
+-----------------
+1. Open VS Code
+2. Open the LoungeIQ folder
+3. Open terminal in VS Code (Ctrl + `)
+4. Run:  pip install -r requirements.txt
+
+
+WEEK 1 — Generate training data
+---------------------------------
+In terminal:
+  cd data
+  python generate_data.py
+
+You should see: "Dataset generated: XXXXX rows"
+A file called lounge_occupancy.csv will appear in the data folder.
+
+
+WEEK 2 — Train the ML model
+------------------------------
+In terminal:
+  cd models
+  python train_model.py
+
+You should see MAE, RMSE, R² scores printed.
+Files saved: occupancy_model.pkl, encoders.pkl, feature_importance.png
+
+
+WEEK 3 — Start the API server
+--------------------------------
+In terminal (from the LoungeIQ root folder):
+  uvicorn api.main:app --reload
+
+Then open your browser:
+  http://localhost:8000          ← health check
+  http://localhost:8000/docs     ← interactive API docs (try endpoints here!)
+  http://localhost:8000/status   ← live lounge status
+
+
+WEEK 4 — Run the chatbot
+--------------------------
+You need an Anthropic API key: https://console.anthropic.com
+
+In terminal:
+  set ANTHROPIC_API_KEY=your-api-key-here
+  python chatbot/agent.py
+
+Try typing:
+  "I'm flying business class from gate B12, which lounge should I use?"
+  "How busy is Lounge A right now?"
+  "What lounges can I access with a gold loyalty card?"
+
+
+WEEK 5 — Start the dashboard
+-------------------------------
+Make sure you have Node.js installed: https://nodejs.org
+
+In terminal:
+  cd dashboard
+  npm install
+  npm start
+
+Open: http://localhost:3000
+
+
+WEEK 6 — Docker build (optional)
+-----------------------------------
+  docker build -t loungeiq .
+  docker run -p 8000:8000 loungeiq
+
+
+COMMON ERRORS
+--------------
+"Model not loaded" → Run train_model.py first (Week 2)
+"Cannot reach API" → Start uvicorn first (Week 3)
+"ANTHROPIC_API_KEY not set" → Set your API key (Week 4)
+"ModuleNotFoundError" → Run pip install -r requirements.txt
+
+
+QUESTIONS?
+-----------
+Every file has comments explaining what each line does.
+Read the comments as you go — that's how you learn!
+==================================================
