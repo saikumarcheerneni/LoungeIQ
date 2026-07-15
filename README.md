@@ -109,4 +109,4 @@ npm start
 
 **Saikumar Cheerneni**  
 MEng Computer Science — Concordia University, Montreal  
-saikumarcheerneni01@gmail.com | github.com/saikumarcheerneni
+github.com/saikumarcheerneni
